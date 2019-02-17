@@ -21,11 +21,11 @@ module.exports = {
   },
 
   staging: {
-    client: 'postgresql',
+    client: nconf.get('DATABASE_CLIENT'),
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: nconf.get('DATABASE_NAME'),
+      user: nconf.get('DATABASE_USERNAME'),
+      password: nconf.get('DATABASE_PASSWORD')
     },
     pool: {
       min: 2,

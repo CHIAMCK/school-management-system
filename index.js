@@ -13,6 +13,9 @@ nconf
 const app = new Koa();
 const router = new Router();
 
+// setup db connections
+require('./model')
+
 const routes = require('./routes')
 
 routes(router)
