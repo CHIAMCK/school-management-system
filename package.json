@@ -1,0 +1,20 @@
+{
+  "name": "microservice-template",
+  "version": "1.0.0",
+  "description": "api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "knex": "^0.14.4",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "7.4.0",
+    "koa-redis": "^3.1.2",
+    "koa-session": "^5.8.1",
+    "nconf": "^0.10.0"
+  },
+  "author": "CHIAMCK",
+  "license": "MIT"
+}
