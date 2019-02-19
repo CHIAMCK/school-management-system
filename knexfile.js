@@ -1,6 +1,8 @@
 // Update with your config settings.
 const nconf = require('nconf')
 
+nconf.env()
+
 module.exports = {
 
   development: {

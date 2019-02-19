@@ -4,6 +4,8 @@ const { Model } = require('objection')
 const Knex = require('knex')
 const nconf = require('nconf')
 
+nconf.env()
+
 // Initialize knex.
 const knex = Knex({
   client: nconf.get('DATABASE_CLIENT'),

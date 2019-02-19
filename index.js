@@ -40,5 +40,5 @@ app
 const port = nconf.get('PORT')
 const server = app.listen(port)
 console.log(`server running at port ${port}`)
-
+console.log(process.env.DATABASE_CLIENT)
 module.exports = server
