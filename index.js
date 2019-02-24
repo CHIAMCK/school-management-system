@@ -4,14 +4,14 @@ var bodyParser = require('koa-bodyparser')
 const Router = require('koa-router')
 const nconf = require('nconf')
 const session = require('koa-session')
-var redisStore = require('koa-redis');
+var redisStore = require('koa-redis')
 
 nconf
   .argv()
   .env()
 
-const app = new Koa();
-const router = new Router();
+const app = new Koa()
+const router = new Router()
 
 // setup db connections
 require('./model')
@@ -19,6 +19,8 @@ require('./model')
 const routes = require('./routes')
 
 routes(router)
+
+app.keys = ['keys', 'keykeys']
 
 app.use(bodyParser())
 
@@ -40,5 +42,4 @@ app
 const port = nconf.get('PORT')
 const server = app.listen(port)
 console.log(`server running at port ${port}`)
-console.log(process.env.DATABASE_CLIENT)
 module.exports = server

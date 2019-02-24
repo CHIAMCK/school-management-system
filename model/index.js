@@ -19,9 +19,9 @@ const knex = Knex({
     min: 2,
     max: 10
   }
-});
+})
 
 // Give the knex object to objection.
-Model.knex(knex);
+Model.knex(knex)
 
 module.exports = knex

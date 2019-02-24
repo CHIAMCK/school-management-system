@@ -1,6 +1,9 @@
 'use strict'
 
-module.exports = (router) => {
-    router.get('/')
+const login = require('./middleware/login')
+const logout = require('./middleware/logout')
 
+module.exports = (router) => {
+  router.post('/login', login.validate, login.login)
+  router.post('/logout', logout.logout)
 }
