@@ -9,6 +9,7 @@ class Account extends Model {
   }
 
   // compare password in request with model password
+  // instance method
   comparePassword (current) {
     return bcrypt.compare(current, this.password)
   }

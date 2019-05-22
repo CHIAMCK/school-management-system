@@ -1,3 +1,5 @@
+// this file is required to create migration files
+// can pass the --env flag or set NODE_ENV
 // Update with your config settings.
 const nconf = require('nconf')
 

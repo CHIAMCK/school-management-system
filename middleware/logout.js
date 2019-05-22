@@ -5,7 +5,6 @@ module.exports = {
 }
 
 async function logout (ctx, next) {
-
   ctx.session = null
   ctx.status = 201
 }

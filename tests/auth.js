@@ -17,10 +17,6 @@ describe('#auth', () => {
     server = chai.request(app)
   })
 
-  after(() => {
-    server.close()
-  })
-
   it('should throw 401 error when email and password is not passed', () => {
     return server
       .post('/login')

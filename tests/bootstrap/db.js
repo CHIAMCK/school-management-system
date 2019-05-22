@@ -12,7 +12,8 @@ const knex = Knex(knexConfig.development)
 // create database
 before(async () => {
   process.env.DATABASE_NAME = DATABASE_NAME
-
+  // drop the test database if it exists
+  await knex.raw(`drop database IF EXISTS "${DATABASE_NAME}";`)
   await knex.raw(`create database "${DATABASE_NAME}";`)
 
   knexConfig.development.connection.database = DATABASE_NAME
@@ -23,7 +24,6 @@ before(async () => {
 
   await new Promise(resolve => {
     testKnex.destroy(() => {
-      knex.raw(`drop database "${DATABASE_NAME}";`)
       resolve()
     })
   })
@@ -31,8 +31,9 @@ before(async () => {
 
 // delete db after is done
 after(async () => {
-  // knex.raw(`SELECT pg_terminate_backend (pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'db-tester';`)
+  await knex.destroy()
 
+  // knex.raw(`SELECT pg_terminate_backend (pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'db-tester' AND pid <> pg_backend_pid();`)
   // cannot drop the db, error message: it is being accessed by other users
-  return knex.raw(`drop database "${DATABASE_NAME}";`)
+  // return knex.raw(`drop database "${DATABASE_NAME}";`)
 })

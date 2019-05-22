@@ -1,3 +1,5 @@
+// to use objection js, installs the knex instance globally for all models
+
 'use strict'
 
 const { Model } = require('objection')
