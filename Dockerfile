@@ -22,9 +22,9 @@ WORKDIR $appdir
 
 # yarn.lock stores the versions of each dependency to get consistent installs across machines
 COPY package.json yarn.lock ./
-RUN yarn install --production
+RUN yarn install
 
-ADD .$appdir
+ADD . $appdir
 
 # command that will get executed when running a container
 CMD ["yarn", "start"]

@@ -4,6 +4,8 @@ exports.up = function (knex, Promise) {
     table.uuid('id').notNullable().primary()
     table.string('email').notNullable().unique()
     table.string('password').notNullable()
+    table.enu('role', ['student', 'teacher']).notNullable()
+    table.enu('status', ['Active', 'Inactive']).defaultTo('Active')
 
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.timestamp('deleted_at').nullable()

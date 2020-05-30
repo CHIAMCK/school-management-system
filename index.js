@@ -11,7 +11,9 @@ nconf
   .env()
 
 const app = new Koa()
-const router = new Router()
+const router = new Router({
+  prefix: '/v1'
+})
 
 // setup db connections
 require('./model')

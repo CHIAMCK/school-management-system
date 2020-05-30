@@ -1,6 +1,7 @@
 'use strict'
 
 const Account = require('../model/account')
+const Student = require('../model/student')
 const uuid = require('uuid/v4')
 
 module.exports = {
@@ -9,10 +10,27 @@ module.exports = {
 }
 
 async function signup (ctx, next) {
-  const { email, password } = ctx.state
+  const { name, email, classId, password, role } = ctx.state
   // throw error if there is duplicate email (with unique constraint defined in model)
   try {
-    await Account.query().insert({ id: uuid(), email: email, password: password })
+    const account = await Account.query().insert({
+      id: uuid(),
+      email: email,
+      password: password,
+      role: role
+    })
+
+    // if user is student
+    if(role == 'student') {
+      await Student.query().insert({
+        id: uuid(),
+        name: name,
+        school_class_id: classId,
+        account_id: account.id
+      })
+    } else if (role == 'teacher') {
+      // if user is teacher
+    }
   } catch (e) {
     if (e.constraint.match(/unique$/)) {
       // throw error
@@ -21,7 +39,7 @@ async function signup (ctx, next) {
     return ctx.throw(500, e)
   }
 
-  ctx.status= 201
+  ctx.status = 201
   await next()
 }
 

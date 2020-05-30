@@ -1,14 +1,12 @@
 version: '3.7'
 
-configs:
-  tpm_nginx:
-    file: ./nginx.conf
-
 services:
   db:
     image: postgres:9.3
     ports:
       - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: username
@@ -17,3 +15,32 @@ services:
     image: redis:3.2
     ports:
       - "6379:6379"
+
+  web:
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+    volumes:
+      - '.:/usr/src/app'
+    restart: on-failure
+    environment:
+      - SESSION_KEY=api
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PORT=3000
+      - DATABASE_CLIENT=postgresql
+      - DATABASE_NAME=api-database
+      - DATABASE_USERNAME=username
+      - DATABASE_PASSWORD=password
+      - DATABASE_HOST=db
+    links:
+      - db
+      - redis
+    depends_on:
+      - redis
+    ports:
+      - "3000:3000"
+
+volumes:
+  db_data:
+    driver: 'local'

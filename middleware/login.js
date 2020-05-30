@@ -31,11 +31,12 @@ async function login (ctx, next) {
 
   // set session
   // session is stored in redis, to access it docker-compose exec redis redis-cli, GET <keyname>
-  // create a cookie on client's browser with session id, cookie name is the sessin key in envrc
+  // create a cookie on client's browser with session id, cookie name is the session key in envrc
   // browser will pass the cookie to server in subsequent requests
   ctx.session.account = account
 
-  ctx.status = 201
+  ctx.status = 200
+  await next()
 }
 
 // valiate login payload
@@ -47,7 +48,6 @@ async function validate (ctx, next) {
 }
 
 async function list (ctx, next) {
-
   ctx.body = {
     total: 2
   }

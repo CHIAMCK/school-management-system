@@ -17,5 +17,17 @@ class Account extends Model {
   static _generatePassword (current) {
     return bcrypt.hash(current, saltRounds)
   }
+
+  async $beforeInsert () {
+    const hashed = await bcrypt.hash(this.password, saltRounds)
+    this.password = hashed
+  }
+
+  async $beforeUpdate () {
+    if (this.password) {
+      const hashed = await bcrypt.hash(this.password, saltRounds)
+      this.password = hashed
+    }
+  }
 }
 module.exports = Account
