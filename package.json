@@ -17,7 +17,7 @@
     "bcrypt": "^1.0.3",
     "bull": "^3.4.4",
     "formidable-upload-koa": "^1.0.1",
-    "knex": "^0.14.6",
+    "knex": "^0.19.5",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-redis": "^3.1.2",
