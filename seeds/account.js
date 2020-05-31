@@ -3,7 +3,8 @@ const accounts = [
   {
     'id': '51195ffe-7d5d-4df1-a381-b65b6a07e6a4',
     'email': 'tester@gmail.com',
-    'password': '123123'
+    'password': '123123',
+    'role': 'student'
   }
 ]
 

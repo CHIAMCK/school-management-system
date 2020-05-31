@@ -13,8 +13,6 @@ services:
       POSTGRES_DB: api-database
   redis:
     image: redis:3.2
-    ports:
-      - "6379:6379"
 
   web:
     build:
@@ -27,7 +25,7 @@ services:
       - SESSION_KEY=api
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PORT=3000
+      - PORT=3001
       - DATABASE_CLIENT=postgresql
       - DATABASE_NAME=api-database
       - DATABASE_USERNAME=username
@@ -39,7 +37,7 @@ services:
     depends_on:
       - redis
     ports:
-      - "3000:3000"
+      - "3001:3001"
 
 volumes:
   db_data:
