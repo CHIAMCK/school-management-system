@@ -11,6 +11,8 @@ const knex = Knex(knexConfig.development)
 
 // create database
 before(async () => {
+  console.log('seeting db')
+
   process.env.DATABASE_NAME = DATABASE_NAME
   // drop the test database if it exists
   await knex.raw(`drop database IF EXISTS "${DATABASE_NAME}";`)

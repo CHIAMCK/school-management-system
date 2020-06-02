@@ -32,7 +32,7 @@ module.exports = (router) => {
   router.get('/students', student.listStudent)
 
   // subject endpoints
-  router.post('/subject', subject.createSubject)
+  router.post('/subject', authentication.authenticated, subject.createSubject)
   router.get('/subject', subject.listSubject)
 
   // teacher endpoints

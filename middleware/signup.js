@@ -32,6 +32,7 @@ async function signup (ctx, next) {
       // if user is teacher
     }
   } catch (e) {
+    console.log(e)
     if (e.constraint.match(/unique$/)) {
       // throw error
       return ctx.throw(400, 'Account already exists')
